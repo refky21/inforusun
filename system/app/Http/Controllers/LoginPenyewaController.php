@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use DB;
-
+use Session;
 class LoginPenyewaController extends Controller
 {
     public function index(Request $req)
@@ -23,14 +23,7 @@ class LoginPenyewaController extends Controller
 
             // dd($keluarga);
 
-
-
-
-
-
-
-
-            return view('member.profile', compact('Penyewa'))
+           return view('member.profile', compact('Penyewa'))
             ->with('rusun', $mstr_rusun)
             ->with('unit', $mstr_unit)
             ->with('keluarga', $keluarga)
@@ -47,19 +40,43 @@ class LoginPenyewaController extends Controller
     {
 
         $No_Reg = $req->kode_cekin;
-        // $Pass = substr($req->password,0,2);
         $Pass = substr($req->password,4,4). '-'.substr($req->password,2,2).'-'.substr($req->password,0,2);
+        
 
-        $Penyewa = DB::table('penyewa')
+        $Penyewa1 = DB::table('penyewa')
         ->where('No_Reg' , $No_Reg)
-        ->where('Tgl_Lahir' , $Pass)
+        // ->where('Tgl_Lahir' , $Pass)
         ->first();
 
-        if($Penyewa != null){
-            $session =  $req->session()->put('Penyewa', $Penyewa);
-        }elseif($Penyewa == null && $req->session()->get('Penyewa') !=null){
-            $Penyewa = $req->session()->get('Penyewa');
+        
+        if($Penyewa1 != null){
+            if($Penyewa1->No_Reg == $No_Reg){
+                if($Penyewa1->Tgl_Lahir == $Pass){
+                    $Penyewa = DB::table('penyewa')
+                    ->where('No_Reg' , $No_Reg)
+                    ->where('Tgl_Lahir' , $Pass)
+                    ->first();
+                     if($Penyewa != null){
+                        $session =  $req->session()->put('Penyewa', $Penyewa);
+                    }elseif($Penyewa == null && $req->session()->get('Penyewa') !=null){
+                        $Penyewa = $req->session()->get('Penyewa');
+                    }
+                }else{
+                    $pesan = Session::flash('pass', 'Password Salah');
+                }
+            }else{
+                $pesan = Session::flash('pass', 'Nomor Register Salah'); 
+            }
+            
+        }else{
+            $pesan = Session::flash('gagal','Akun Anda Tidak Terdaftar');
         }
+
+        // if($Penyewa != null){
+        //     $session =  $req->session()->put('Penyewa', $Penyewa);
+        // }elseif($Penyewa == null && $req->session()->get('Penyewa') !=null){
+        //     $Penyewa = $req->session()->get('Penyewa');
+        // }
 
         return redirect('member');
         // dd($Penyewa);

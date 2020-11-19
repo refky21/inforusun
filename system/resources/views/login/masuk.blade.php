@@ -17,6 +17,16 @@
                                Hubungi Petugas Rusun Untuk Login
                             </a>  
                         </div>
+                        @if ($message = Session::get('gagal'))
+                            <div class="mdc-button mdc-ripple-surface mdc-ripple-surface--accent accent-color normal w-250">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
+                        @if ($message = Session::get('pass'))
+                            <div class="mdc-button mdc-ripple-surface mdc-ripple-surface--accent accent-color normal w-250">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
                         <form action="{{url('/member/validasi')}}" method="post">  
                         @csrf
                             <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon w-100 mt-3 custom-field ">

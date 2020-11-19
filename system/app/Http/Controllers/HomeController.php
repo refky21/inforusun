@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function index(Request $req)
     {
 
-        $Penyewa = $req->session()->get('Penyewa');
+            $Penyewa = $req->session()->get('Penyewa');
         
            
             return view('welcome', compact('Penyewa'));
