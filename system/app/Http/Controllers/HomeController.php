@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -25,9 +25,28 @@ class HomeController extends Controller
     {
 
             $Penyewa = $req->session()->get('Penyewa');
+
+
+
+            $cek_unit = DB::table('check_in')->get();
+            $used_unit = [];
+            $i = 0;
+            foreach($cek_unit as $un){
+                $used_unit[$i]['Unit_Sewa_Id'] = $un->Unit_Sewa_Id;
+                $i++;
+            }
+
+            $unit_sewa = DB::table('unit_sewa')->join('mstr_rusun','unit_sewa.Rusun_Id','=','mstr_rusun.info_id')
+           ->where('Is_Aktif',1)
+            ->WhereNotIn('Unit_Sewa_Id', $used_unit)->get();
+
+
+            // dd($unit_sewa);
+
+
         
            
-            return view('welcome', compact('Penyewa'));
+            return view('welcome', compact('Penyewa'))->with('sisa_unit',$unit_sewa);
         
 
         
