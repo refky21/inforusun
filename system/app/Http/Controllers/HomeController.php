@@ -38,7 +38,9 @@ class HomeController extends Controller
 
             $unit_sewa = DB::table('unit_sewa')->join('mstr_rusun','unit_sewa.Rusun_Id','=','mstr_rusun.info_id')
            ->where('Is_Aktif',1)
-            ->WhereNotIn('Unit_Sewa_Id', $used_unit)->get();
+            ->WhereNotIn('Unit_Sewa_Id', $used_unit)
+            ->limit(8)
+            ->get();
 
 
             // dd($unit_sewa);

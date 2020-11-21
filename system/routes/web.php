@@ -39,3 +39,9 @@ Route::group(['prefix' => '/page'], function()
   Route::post('/update', 'HalamanWebsiteController@update')->name('Role.Update');
   Route::get('/delete/{id}', 'HalamanWebsiteController@delete');
 });
+
+
+Route::group(['prefix' => '/tagihan'], function()
+{
+  Route::get('/', 'TagihanMemberController@index')->name('Tagihan');
+});

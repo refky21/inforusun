@@ -75,9 +75,11 @@
                         </div>
                         <div class="mdc-card p-3 mt-3"> 
                             <h2 class="uppercase text-center fw-500 mb-2">Daftar Tunggakan</h2>  
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis, suscipit, numquam accusantium eligendi veniam dolor placeat earum illo corporis esse nulla facere sunt assumenda? Perferendis omnis magni quos fugiat explicabo.</p>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit laboriosam voluptates dignissimos? Dolorum sed culpa repellat, itaque quas nostrum, eos qui nemo fugit reiciendis laboriosam vero magnam nam, dolorem officia.</p>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus voluptas assumenda ab, quos sequi rerum. Quos iusto ab alias, exercitationem autem a doloribus non. Vel porro tenetur omnis ut numquam.</p>
+                            <a href="{{url('/tagihan')}}" target="_blank" class="mdc-button mdc-button--raised mdc-ripple-upgraded" style="--mdc-ripple-fg-size:72px; --mdc-ripple-fg-scale:1.89162; --mdc-ripple-fg-translate-start:14.4844px, -6px; --mdc-ripple-fg-translate-end:24.4766px, -18px;">
+                                <span class="mdc-button__ripple"></span>
+                                <span class="mdc-button__label">Klik Disini</span> 
+                            </a>
+                                    
                         </div>
                         
                         
