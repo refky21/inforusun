@@ -98,7 +98,7 @@
                                         if($Penyewa->foto != null){
                                     ?>
 
-                                        <img src="https://admin.rusunawakotamagelang.if/foto/{{$Penyewa->foto}}" alt="agent-4" class="d-block mw-100">
+                                        <img src="https://admin.rusunawakotamagelang.id/foto/{{$Penyewa->foto}}" alt="agent-4" class="d-block mw-100">
                                         <?php } else{
                                             ?>
                                         <img src="assets/images/agents/a-4.jpg" alt="agent-4" class="d-block mw-100">
