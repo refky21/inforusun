@@ -195,30 +195,59 @@
         </div> 
     </header>   
     <main class="content-offset-to-top"> 
-        <div class="header-image-wrapper">
-            <div class="bg bg-anime"></div>
-            <div class="mask"></div>            
-            <div class="header-image-content home-page offset-bottom">
-                <h1 class="title">Pilih Unit Anda Sendiri</h1>
-                <p class="desc">Rumah Susun Kota Magelang</p>
-                <div class="mt-4">
-                    <a href="{{url('/page/tentang-kami')}}" class="mdc-button mdc-button--raised">
-                        <span class="mdc-button__ripple"></span>
-                        <span class="mdc-button__label">about us</span> 
-                    </a>
-                    <a href="{{url('/page/hubungi-kami')}}" class="mdc-button mdc-button--raised">
-                        <span class="mdc-button__ripple"></span>
-                        <span class="mdc-button__label">contact</span> 
-                    </a>      
-                </div>
+        <div class="header-carousel offset-bottom">
+            <div class="swiper-container h-100">
+                <div class="swiper-wrapper h-100">  
+                    <div class="swiper-slide">
+                        <div class="slide-item swiper-lazy" data-background="assets/images/props/flat-1/1-big.jpg">
+                            <div class="swiper-lazy-preloader"></div> 
+                            <span class="d-none" data-slide-title="Modern and quirky flat"></span>
+                            <span class="d-none" data-slide-location="611 W 180th St, New York, NY 10033, USA"></span>
+                            <span class="d-none" data-slide-price="$ 1,300,000"></span> 
+                        </div> 
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-item swiper-lazy" data-background="assets/images/props/house-1/5-big.jpg">
+                            <div class="swiper-lazy-preloader"></div> 
+                            <span class="d-none" data-slide-title="Comfortable family house"></span>
+                            <span class="d-none" data-slide-location="3rd Ave & James St, Seattle, WA 98104, USA"></span>
+                            <span class="d-none" data-slide-price="$ 2,550,000"></span> 
+                        </div> 
+                    </div> 
+                    <div class="swiper-slide">
+                        <div class="slide-item swiper-lazy" data-background="assets/images/props/office-2/6-big.jpg">
+                            <div class="swiper-lazy-preloader"></div> 
+                            <span class="d-none" data-slide-title="Luxury office space"></span>
+                            <span class="d-none" data-slide-location="230 W 55th St, New York, NY 10019, USA"></span>
+                            <span class="d-none" data-slide-price="$ 2,500,000"></span> 
+                        </div> 
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-item swiper-lazy" data-background="assets/images/props/apartment/1-big.jpg">
+                            <div class="swiper-lazy-preloader"></div> 
+                            <span class="d-none" data-slide-title="Centrally located apartment"></span>
+                            <span class="d-none" data-slide-location="1627 Vine St, Los Angeles, CA 90028, USA"></span>
+                            <span class="d-none" data-slide-price="$ 5,600 /month"></span> 
+                        </div> 
+                    </div>
+                </div>     
+                <button class="swiper-button-prev swipe-arrow mdc-fab mdc-fab--mini primary">
+                    <span class="mdc-fab__ripple"></span>
+                    <span class="mdc-fab__icon material-icons">keyboard_arrow_left</span> 
+                </button>
+                <button class="swiper-button-next swipe-arrow mdc-fab mdc-fab--mini primary"> 
+                    <span class="mdc-fab__ripple"></span>
+                    <span class="mdc-fab__icon material-icons">keyboard_arrow_right</span> 
+                </button>  
+                
             </div>
-        </div>  
+        </div>
         <div class="px-3">  
             <div class="theme-container"> 
                 <div class="mdc-card main-content-header">  
-                    <form action="javascript:void(0);" id="filters" class="search-wrapper"> 
+                    <form action="" id="filters" class="search-wrapper" method="get"> 
                         <div class="row">  
-                            <div class="col-xs-12 col-sm-6 col-md-4 p-2">
+                            <div class="col-xs-12 col-sm-6 col-md-12 p-2">
                                 <div class="mdc-select mdc-select--outlined">
                                     <div class="mdc-select__anchor">
                                         <i class="mdc-select__dropdown-icon"></i>
@@ -226,72 +255,26 @@
                                         <div class="mdc-notched-outline">
                                             <div class="mdc-notched-outline__leading"></div>
                                             <div class="mdc-notched-outline__notch">
-                                                <label class="mdc-floating-label">Property Type</label>
+                                                <label class="mdc-floating-label">Rusunawa</label>
                                             </div>
                                             <div class="mdc-notched-outline__trailing"></div>
                                         </div>
                                     </div>
                                     <div class="mdc-select__menu mdc-menu mdc-menu-surface">
-                                        <ul class="mdc-list">
+                                        <ul class="mdc-list" name="rusun">
                                             <li class="mdc-list-item mdc-list-item--selected" data-value=""></li>
-                                            <li class="mdc-list-item" data-value="1">Office</li>
-                                            <li class="mdc-list-item" data-value="2">House</li>
-                                            <li class="mdc-list-item" data-value="3">Apartment</li>
+                                            @foreach($rusun as $r)
+                                            <li class="mdc-list-item" data-value="1" id="{{$r->info_id}}">
+                                            <a href="?Rusun={{$r->info_id}}" class="mdc-list-item"> {{$r->nama_rusun}}</a> 
+                                            </li>
+                                            @endforeach
+                                            
                                         </ul>
                                     </div>
                                 </div>
                             </div>   
-                            <div class="col-xs-12 col-sm-6 col-md-4 p-2">  
-                                <div class="mdc-select mdc-select--outlined">
-                                    <div class="mdc-select__anchor">
-                                        <i class="mdc-select__dropdown-icon"></i>
-                                        <div class="mdc-select__selected-text"></div>
-                                        <div class="mdc-notched-outline">
-                                            <div class="mdc-notched-outline__leading"></div>
-                                            <div class="mdc-notched-outline__notch">
-                                                <label class="mdc-floating-label">Property Status</label>
-                                            </div>
-                                            <div class="mdc-notched-outline__trailing"></div>
-                                        </div>
-                                    </div>
-                                    <div class="mdc-select__menu mdc-menu mdc-menu-surface">
-                                        <ul class="mdc-list">
-                                            <li class="mdc-list-item mdc-list-item--selected" data-value=""></li>
-                                            <li class="mdc-list-item" data-value="1">For Sale</li>
-                                            <li class="mdc-list-item" data-value="2">For Rent</li>
-                                            <li class="mdc-list-item" data-value="3">Open House</li>
-                                            <li class="mdc-list-item" data-value="4">No Fees</li>
-                                            <li class="mdc-list-item" data-value="5">Hot Offer</li>
-                                            <li class="mdc-list-item" data-value="6">Sold</li>
-                                        </ul>
-                                    </div>
-                                </div> 
-
-                            </div>   
-                            <div class="col-xs-6 col-md-2 p-2">
-                                <div class="mdc-text-field mdc-text-field--outlined">
-                                    <input class="mdc-text-field__input">
-                                    <div class="mdc-notched-outline">
-                                    <div class="mdc-notched-outline__leading"></div>
-                                    <div class="mdc-notched-outline__notch">
-                                        <label class="mdc-floating-label">Price From</label>
-                                    </div>
-                                    <div class="mdc-notched-outline__trailing"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-md-2 p-2 to">
-                                <div class="mdc-text-field mdc-text-field--outlined">
-                                    <input class="mdc-text-field__input">
-                                    <div class="mdc-notched-outline">
-                                    <div class="mdc-notched-outline__leading"></div>
-                                    <div class="mdc-notched-outline__notch">
-                                        <label class="mdc-floating-label">Price To</label>
-                                    </div>
-                                    <div class="mdc-notched-outline__trailing"></div>
-                                    </div>
-                                </div>
-                            </div>  
+                            
+                            
                         </div>    
                          
                         <div class="row center-xs middle-xs p-2"> 
@@ -301,16 +284,16 @@
                             </button>
                             
                             &nbsp;
-                            <button class="mdc-button mdc-button--raised" type="submit">
+                            <!-- <button class="mdc-button mdc-button--raised" id="tombol">
                                 <span class="mdc-button__ripple"></span>
                                 <i class="material-icons mdc-button__icon">search</i>
                                 <span class="mdc-button__label">Search</span> 
-                            </button>  
+                            </button>   -->
                         </div>
                     </form> 
                 </div>  
 
-
+                
 
                 
                 <div class="properties-wrapper row"> 
@@ -318,24 +301,7 @@
                     @foreach($sisa_unit as $unit)   
                     <div class="row item col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3"> 
                         <div class="mdc-card property-item grid-item column-4 full-width-page">
-                            <div class="thumbnail-section">
-                                
-                                <div class="property-image"> 
-                                    <div class="swiper-container">
-                                        <div class="swiper-wrapper"> 
-                                            <div class="swiper-slide">
-                                                <img src="assets/images/others/transparent-bg.png" alt="slide image" data-src="assets/images/props/flat-2/1-medium.jpg" class="slide-item swiper-lazy">
-                                                <div class="swiper-lazy-preloader"></div> 
-                                            </div> 
-                                           
-                                        </div>  
-                                        <div class="swiper-pagination white"></div>  
-                                        <button class="mdc-icon-button swiper-button-prev swipe-arrow"><i class="material-icons mat-icon-lg">keyboard_arrow_left</i></button>
-                                        <button class="mdc-icon-button swiper-button-next swipe-arrow"><i class="material-icons mat-icon-lg">keyboard_arrow_right</i></button>
-                                    </div>  
-                                </div> 
-                                
-                            </div>
+                            
                             <div class="property-content-wrapper"> 
                                 <div class="property-content">
                                     <div class="content">

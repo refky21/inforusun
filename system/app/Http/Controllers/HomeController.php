@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use DB;
 class HomeController extends Controller
 {
@@ -25,7 +26,7 @@ class HomeController extends Controller
     {
 
             $Penyewa = $req->session()->get('Penyewa');
-
+            $Rusun = Input::get('Rusun');
 
 
             $cek_unit = DB::table('check_in')->get();
@@ -36,11 +37,24 @@ class HomeController extends Controller
                 $i++;
             }
 
+            if($Rusun != null){
+                $unit_sewa = DB::table('unit_sewa')->join('mstr_rusun','unit_sewa.Rusun_Id','=','mstr_rusun.info_id')
+                ->where('Is_Aktif',1)
+                ->where('Rusun_Id',$Rusun)
+                 ->WhereNotIn('Unit_Sewa_Id', $used_unit)
+                 ->limit(8)
+                 ->get();
+            }else{
             $unit_sewa = DB::table('unit_sewa')->join('mstr_rusun','unit_sewa.Rusun_Id','=','mstr_rusun.info_id')
            ->where('Is_Aktif',1)
             ->WhereNotIn('Unit_Sewa_Id', $used_unit)
             ->limit(8)
             ->get();
+            }
+
+          
+
+                $mstr_rusun = DB::table('mstr_rusun')->get();
 
 
             // dd($unit_sewa);
@@ -48,7 +62,9 @@ class HomeController extends Controller
 
         
            
-            return view('welcome', compact('Penyewa'))->with('sisa_unit',$unit_sewa);
+            return view('welcome', compact('Penyewa','Rusun'))
+            ->with('rusun', $mstr_rusun)
+            ->with('sisa_unit',$unit_sewa);
         
 
         
